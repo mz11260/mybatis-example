@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
+/**
+ * 注解方式
+ */
 @Mapper
 public interface UserOrderItemMapper {
 
