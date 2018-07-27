@@ -12,6 +12,5 @@ import org.apache.ibatis.annotations.Select;
 public interface UserOrderItemMapper {
 
     @Select("select * from user where user.id = #{userId}")
-    @ResultMap("")
     void findUserOrderByUserId(@Param("userId") int userId);
 }
