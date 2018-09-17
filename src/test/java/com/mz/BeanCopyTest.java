@@ -3,6 +3,7 @@ package com.mz;
 import com.mz.entity.OrderItem;
 import com.mz.entity.OrderMode;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -44,6 +45,16 @@ public class BeanCopyTest {
     }
 
     @Benchmark
+    public String testToString() {
+        return ToStringBuilder.reflectionToString(model);
+    }
+
+    @Benchmark
+    public String testToString2() {
+        return model.toString();
+    }
+
+    @Benchmark
     public OrderItem springBeanUitls() {
         OrderItem vo = new OrderItem();
         BeanUtils.copyProperties(this.model, vo);
@@ -74,7 +85,7 @@ public class BeanCopyTest {
     public static void main(String[] args) throws RunnerException {
         // 使用一个单独进程执行测试，执行5遍warmup，然后执行5遍测试
         Options opt = new OptionsBuilder().include(BeanCopyTest.class.getSimpleName()).forks(1).warmupIterations(10)
-                .measurementIterations(10).build();
+                .measurementIterations(30).build();
         new Runner(opt).run();
     }
 

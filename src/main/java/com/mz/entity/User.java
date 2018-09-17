@@ -25,4 +25,8 @@ public class User implements Serializable {
     private Date birthday;
     private String gender;
     private String address;
+
+    private String deptId;
+
+    private Dept dept;
 }
